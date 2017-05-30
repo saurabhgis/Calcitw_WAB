@@ -31,3 +31,7 @@
 .cmv .jimu-widget-measure .dijitNumberTextBox {
     width: 70px !important;
 }
+
+div#cmv-titlePane-body-Traverse_parent {
+    height: 720px;
+}
