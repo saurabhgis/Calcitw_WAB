@@ -1,0 +1,17 @@
+{
+  "name": "Traverse",
+  "platform": "HTML",
+  "version": "2.2.2",
+  "wabVersion": "2.2",
+  "author": "Tom Sellsted & Dean Anderson",
+  "description": "A simple traverse widget for WAB",
+  "copyright": "Copyright 2016",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {
+    "hasConfig": true,
+    "hasStyle": true,
+    "hasLocale": false,
+    "hasUIFile": true,
+    "hasSettingPage": true
+  }
+}

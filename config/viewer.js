@@ -303,25 +303,29 @@ define([
             },
 
 
-            draw: {
+            Traverse: {
                 include: true,
-                id: 'draw',
+                id: 'Traverse',
                 type: 'titlePane',
                 position: 3,
-                title: 'Draw',
+                title: 'Traverse',
                 open: false,
                 path: 'jimu/BaseWidgetPanel', // Note the path
                 options: {                  
                     widgetManager: true,
                     config: {
                         widgets: [                           
-                            {   id: 'WABDraw',
-                                uri: 'wabwidgets/Draw/Widget' // Note the path
+                            {
+                                id: 'WABTraverse',
+                                uri: 'wabwidgets/Traverse/Widget' // Note the path
                             }
                         ]
                     }
                 }
             },
+
+
+
 
 
             //draw: {

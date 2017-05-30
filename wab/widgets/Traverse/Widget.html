@@ -1,0 +1,70 @@
+<div>
+    <div><center>
+        <button type="button" data-dojo-attach-point="btnStartPoint">Set Starting Point</button>&nbsp;&nbsp;
+        X: <input style="width: 6em;" data-dojo-attach-point="txtXcoord" value="0">
+        Y: <input style="width: 6em;" data-dojo-attach-point="txtYcoord" value="0">
+        <br><br>
+        </center>
+    </div>
+    <div id="courseForm">
+        <div><center>
+            <input type="radio" name="rdoDDorDMS" id="rdoDD" data-dojo-attach-point="rdoDD" value="DD"> Decimal Degrees&nbsp;&nbsp;
+            <input type="radio" name="rdoDDorDMS" id="rdoDMS" data-dojo-attach-point="rdoDMS" value="DMS" checked> Degrees Minute Seconds<br><br>
+            <input type="radio" name="rdoQuadorAz" id="rdoQuad" data-dojo-attach-point="rdoQuad" value="Quad" checked> Quadrant Bearing&nbsp;&nbsp;
+            <input type="radio" name="rdoQuadorAz" id="rdoAz" data-dojo-attach-point="rdoAz" value="Az"> Azimuth Bearing<br><br>
+            <table>
+            	<tr><td>Course:</td><td>
+            <button type="button" data-dojo-attach-point="btnAddCourse">Add</button>
+            <button type="button" data-dojo-attach-point="btnDrawCourse">Draw</button>
+            <button type="button" data-dojo-attach-point="btnInsertCourse">Insert</button>
+            <input data-dojo-attach-point="colorPicker" data-dojo-type="jimu/dijit/ColorPicker" style="width:35px;height:22px; display: inline-block" data-dojo-props="color:[255,0,0,1]">
+            </td></tr>
+            <tr><td>&nbsp;</td><td><button type="button" data-dojo-attach-point="btnDuplicateCourse">Duplicate</button>
+            <button type="button" data-dojo-attach-point="btnDeleteCourse">Delete</button>
+            <button type="button" data-dojo-attach-point="btnCloseCourse">Close</button>
+            </td></tr></table>
+            <label data-dojo-attach-point="errorMessage">&nbsp;</label>
+        </center></div>
+        <div data-dojo-attach-point="courseList">
+        </div>
+        <br>
+        <center>
+        <br>
+        Units - Distance: <select data-dojo-attach-point="distanceUnits" id="distanceUnits" style="width: 6em;">
+                    <option value="feet">Feet</option>
+                    <option value="yards">Yards</option>
+                    <option value="feet">Rods</option>
+                    <option value="feet">Chains</option>
+                    <option value="feet">Links</option>
+                    <option value="meters">Meters</option>
+                </select>
+                &nbsp;&nbsp;Area:
+                <select data-dojo-attach-point="areaUnits" style="width: 6em;">
+                    <option value="acres">Acres</option>
+                    <option value="square-feet">Sq Feet</option>
+                    <option value="square-meters">Sq Meters</option>
+                    <option value="square-miles">Sq Miles</option>
+                    <option value="square-kilometers">Sq Kilometers</option>
+                    <option value="square-yards">Sq Yards</option>
+                </select>
+        <br><br>
+        Rotation Angle: <input style="width: 4em;" data-dojo-attach-point="txtRotationAngle" value="0">
+        &nbsp;&nbsp;
+        <button type="button" data-dojo-attach-point="btnSetAngle" value="Set">Set</button>
+        </center>
+        <input type="file" name="traverseInputFile" id="traverseInputFile" data-dojo-attach-point="traverseInputFile" style="visibility: hidden"/>
+        <center>
+            <label class="custom-file-zoom" data-dojo-attach-point="traverseZoom" ></label>&nbsp;
+            <label class="custom-file-input" for="traverseInputFile" ></label>&nbsp;
+            <label class="custom-file-output" data-dojo-attach-point="traverseOutputFile" ></label>&nbsp;
+            <label class="custom-file-json" data-dojo-attach-point="traverseJSONFile" ></label>&nbsp;
+            <label class="custom-file-clear" data-dojo-attach-point="traverseClear" ></label>&nbsp;
+            <label class="custom-file-report" data-dojo-attach-point="traverseReport" ></label>
+            <br>
+            <label data-dojo-attach-point="txtClosure"></label>
+            <br><br>
+            <button type="button" id="btnHelp" data-dojo-attach-point="btnHelp">Help!</button>
+            <button type="button" data-dojo-attach-point="btnUnitConverter" data-dojo-attach-event="onclick:btnUnitConverterClicked" title="Unit Converter">Unit Converter</button>
+        </center>
+    </div>
+</div>
