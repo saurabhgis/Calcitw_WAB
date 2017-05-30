@@ -10,7 +10,7 @@ define([
     //     layerIds: [0],
     //     layerOption: 'show'
     // })
-    function buildImageParameters (config) {
+    function buildImageParameters(config) {
         config = config || {};
         var ip = new ImageParameters();
         //image parameters for dynamic services, set to png32 for higher quality exports
@@ -32,7 +32,10 @@ define([
         // map options, passed to map constructor. see: https://developers.arcgis.com/javascript/jsapi/map-amd.html#map1
         mapOptions: {
             basemap: 'streets',
-            center: [-96.59179687497497, 39.09596293629694],
+            center: [86.1828377, 26.2733181],
+
+            //25.6095908,86.7092889,
+
             zoom: 5,
             sliderStyle: 'small'
         },
@@ -63,70 +66,31 @@ define([
         // The 'options' object is passed as the layers options for constructor. Title will be used in the legend only. id's must be unique and have no spaces.
         // 3 'mode' options: MODE_SNAPSHOT = 0, MODE_ONDEMAND = 1, MODE_SELECTION = 2
         operationalLayers: [{
-            type: 'feature',
-            url: 'https://services1.arcgis.com/6bXbLtkf4y11TosO/arcgis/rest/services/Restaurants/FeatureServer/0',
-            title: 'Restaurants',
-            options: {
-                id: 'restaurants',
-                opacity: 1.0,
-                visible: true,
-                outFields: ['*'],
-                mode: 0
-            }
-        }, {
-            type: 'feature',
-            url: 'https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0',
-            title: 'SF 311 Incidents',
-            options: {
-                id: 'sf311Incidents',
-                opacity: 1.0,
-                visible: true,
-                outFields: ['req_type', 'req_date', 'req_time', 'address', 'district'],
-                mode: 0
-            }
-        }, {
             type: 'dynamic',
-            url: 'https://sampleserver1.arcgisonline.com/ArcGIS/rest/services/PublicSafety/PublicSafetyOperationalLayers/MapServer',
-            title: 'Louisville Public Safety',
+            url: 'http://gisserver.bih.nic.in/ArcGIS/rest/services/DistrictBoundary/MapServer/',
+            title: 'Bihar',
             options: {
-                id: 'louisvillePubSafety',
+                id: 'Bihar',
                 opacity: 1.0,
                 visible: true,
                 imageParameters: buildImageParameters({
-                    layerIds: [0, 2, 4, 5, 8, 10, 12, 21],
+                    layerIds: [0, 1, 2],
                     layerOption: 'show'
                 })
             },
             identifyLayerInfos: {
-                layerIds: [2, 4, 5, 8, 12, 21]
+                layerIds: [0, 1, 2]
             },
             layerControlLayerInfos: {
-                layerIds: [0, 2, 4, 5, 8, 9, 10, 12, 21]
+                layerIds: [0, 1, 2]
             },
             legendLayerInfos: {
                 layerInfo: {
                     hideLayers: [21]
                 }
             }
-        }, {
-            type: 'dynamic',
-            url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/DamageAssessment/MapServer',
-            title: 'Damage Assessment',
-            options: {
-                id: 'damageAssessment',
-                opacity: 1.0,
-                visible: true,
-                imageParameters: buildImageParameters()
-            },
-            legendLayerInfos: {
-                exclude: true
-            },
-            layerControlLayerInfos: {
-                swipe: true,
-                metadataUrl: true,
-                expanded: true
-            }
-        }],
+        }
+        ],
         // set include:true to load. For titlePane type set position the the desired order in the sidebar
         widgets: {
             growler: {
@@ -164,23 +128,23 @@ define([
                     scalebarUnit: 'dual'
                 }
             },
-            //mapInfo: {
-            //    include: true,
-            //    id: 'mapInfo',
-            //    type: 'domNode',
-            //    path: 'gis/dijit/MapInfo',
-            //    srcNodeRef: 'mapInfoDijit',
-            //    options: {
-            //        map: true,
-            //        mode: 'dms',
-            //        firstCoord: 'y',
-            //        unitScale: 3,
-            //        showScale: true,
-            //        xLabel: '',
-            //        yLabel: '',
-            //        minWidth: 286
-            //    }
-            //},
+            mapInfo: {
+                include: true,
+                id: 'mapInfo',
+                type: 'domNode',
+                path: 'gis/dijit/MapInfo',
+                srcNodeRef: 'mapInfoDijit',
+                options: {
+                    map: true,
+                    mode: 'dms',
+                    firstCoord: 'y',
+                    unitScale: 3,
+                    showScale: true,
+                    xLabel: '',
+                    yLabel: '',
+                    minWidth: 286
+                }
+            },
 
 
 
@@ -311,10 +275,10 @@ define([
                 title: 'Traverse',
                 open: false,
                 path: 'jimu/BaseWidgetPanel', // Note the path
-                options: {                  
+                options: {
                     widgetManager: true,
                     config: {
-                        widgets: [                           
+                        widgets: [
                             {
                                 id: 'WABTraverse',
                                 uri: 'wabwidgets/Traverse/Widget' // Note the path
@@ -379,25 +343,25 @@ define([
             //    }
             //},
             print: {
-        include: true,
-        id: 'print',
-        type: 'titlePane',
-        canFloat: true,
-        path: 'gis/dijit/Print',
-        title: 'Print',
-        iconClass: 'fa-print',
-        open: false,
-        position: 6,
-        options: {
-            map: true,
-            printTaskURL: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task',
-            copyrightText: 'Copyright 2014',
-            authorText: 'Me',
-            defaultTitle: 'Viewer Map',
-            defaultFormat: 'PDF',
-            defaultLayout: 'Letter ANSI A Landscape'
-        }
-    },
+                include: true,
+                id: 'print',
+                type: 'titlePane',
+                canFloat: true,
+                path: 'gis/dijit/Print',
+                title: 'Print',
+                iconClass: 'fa-print',
+                open: false,
+                position: 6,
+                options: {
+                    map: true,
+                    printTaskURL: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task',
+                    copyrightText: 'Copyright 2014',
+                    authorText: 'Me',
+                    defaultTitle: 'Viewer Map',
+                    defaultFormat: 'PDF',
+                    defaultLayout: 'Letter ANSI A Landscape'
+                }
+            },
             //directions: {
             //    include: true,
             //    id: 'directions',
@@ -420,117 +384,117 @@ define([
             //        }
             //    }
             //},
-        editor: {
-        include: true,
-        id: 'editor',
-        type: 'titlePane',
-        path: 'gis/dijit/Editor',
-        title: 'Editor',
-        iconClass: 'fa-pencil',
-        open: false,
-        position: 8,
-        options: {
-                map: true,
-                mapClickMode: true,
-                editorLayerInfos: true,
-                settings: {
-                toolbarVisible: true,
-                showAttributesOnClick: true,
-                enableUndoRedo: true,
-                createOptions: {
-                        polygonDrawTools: ['freehandpolygon', 'autocomplete']
-                },
-                    toolbarOptions: {
-                        reshapeVisible: true,
-                        cutVisible: true,
-                        mergeVisible: true
+            editor: {
+                include: true,
+                id: 'editor',
+                type: 'titlePane',
+                path: 'gis/dijit/Editor',
+                title: 'Editor',
+                iconClass: 'fa-pencil',
+                open: false,
+                position: 8,
+                options: {
+                    map: true,
+                    mapClickMode: true,
+                    editorLayerInfos: true,
+                    settings: {
+                        toolbarVisible: true,
+                        showAttributesOnClick: true,
+                        enableUndoRedo: true,
+                        createOptions: {
+                            polygonDrawTools: ['freehandpolygon', 'autocomplete']
+                        },
+                        toolbarOptions: {
+                            reshapeVisible: true,
+                            cutVisible: true,
+                            mergeVisible: true
+                        }
                     }
                 }
-        }
-        },
-    ////streetview: {
-    ////    include: true,
-    ////    id: 'streetview',
-    ////    type: 'titlePane',
-    ////    canFloat: true,
-    ////    position: 9,
-    ////    path: 'gis/dijit/StreetView',
-    ////    title: 'StreetView',
-    ////    iconClass: 'fa-street-view',
-    ////    paneOptions: {
-    ////        resizable: true,
-    ////        resizeOptions: {
-    ////            minSize: {
-    ////                w: 250,
-    ////                h: 250
-    ////            }
-    ////        }
-    ////    },
-    //    options: {
-    //        map: true,
-    //        mapClickMode: true,
-    //        mapRightClickMenu: true
-    //    }
-    //},
-    identify: {
-        include: true,
-        id: 'identify',
-        type: 'titlePane',
-        path: 'gis/dijit/Identify',
-        title: 'Identify',
-        iconClass: 'fa-info-circle',
-        open: false,
-        position: 3,
-        options: 'cmvConfig/identify'
-    },
-    locale: {
-        include: true,
-        id: 'locale',
-        type: 'titlePane',
-        position: 100,
-        path: 'gis/dijit/Locale',
-        title: 'Locale',
-        iconClass: 'fa-flag',
-        options: {
-            style: 'margin-left: 30px;'
-        }
-    },
+            },
+            ////streetview: {
+            ////    include: true,
+            ////    id: 'streetview',
+            ////    type: 'titlePane',
+            ////    canFloat: true,
+            ////    position: 9,
+            ////    path: 'gis/dijit/StreetView',
+            ////    title: 'StreetView',
+            ////    iconClass: 'fa-street-view',
+            ////    paneOptions: {
+            ////        resizable: true,
+            ////        resizeOptions: {
+            ////            minSize: {
+            ////                w: 250,
+            ////                h: 250
+            ////            }
+            ////        }
+            ////    },
+            //    options: {
+            //        map: true,
+            //        mapClickMode: true,
+            //        mapRightClickMenu: true
+            //    }
+            //},
+            identify: {
+                include: true,
+                id: 'identify',
+                type: 'titlePane',
+                path: 'gis/dijit/Identify',
+                title: 'Identify',
+                iconClass: 'fa-info-circle',
+                open: false,
+                position: 3,
+                options: 'cmvConfig/identify'
+            },
+            locale: {
+                include: true,
+                id: 'locale',
+                type: 'titlePane',
+                position: 100,
+                path: 'gis/dijit/Locale',
+                title: 'Locale',
+                iconClass: 'fa-flag',
+                options: {
+                    style: 'margin-left: 30px;'
+                }
+            },
 
-    calciteStyler: {
-        include: true,
-        type: 'titlePane',
-        path: 'widgets/CalciteStyler',
-        position: 100,
-        title: 'Calcite Styler',
-        open: false,
-        iconClass: 'fa-cog',
-        options: {}
-    }
+            calciteStyler: {
+                include: true,
+                type: 'titlePane',
+                path: 'widgets/CalciteStyler',
+                position: 100,
+                title: 'Calcite Styler',
+                open: false,
+                iconClass: 'fa-cog',
+                options: {}
+            }
 
-    //about: {
-    //    include: true,
-    //    type: 'floating',
-    //    position: 100,
-    //    path: 'dijit/layout/ContentPane',
-    //    title: 'Using CMV with Calcite Maps',
-    //    menuTitle: 'About CMV',
-    //    open: true,
-    //    iconClass: 'fa-info',
-    //    options: {
-    //        className: 'text-center',
-    //        style: 'max-height:90%;',
-    //        content: [
-    //            '<div class="text-center" style="min-width:260px;font-size:60px;vertical-align:middle;width:90%;white-space:no-break;">',
-    //            '<a href="https://cmv.io/" target="_blank"><image style="height:60px;margin-top:-18px;" src="https://cmv.io/images/rocket-logo.png"></a>',
-    //            '<span class="fa fa-fw fa-plus"></span>',
-    //            '<a href="http://esri.github.io/calcite-maps/" target="_blank" class="esri-icon esri-icon-map-pin"style="color:#0079c1;text-decoration:none !important;"></a>',
-    //            '</div>',
-    //            '<h5>This is a demonstration of using <a href="https://cmv.io/" target="_blank">CMV</a> with Esri\'s <a href="http://esri.github.io/calcite-maps/" target="_blank">Calcite Maps</a>. You can use the styler widget to explore the different colors, styles and layouts. When you are done, apply the CSS styles and classes to your own apps.</h5>',
-    //            '<br/>',
-    //            '<button type="button" class="btn btn-success btn-lg"  data-dismiss="modal">Get Started</a>'
-    //        ].join('')
-    //    }
-    //}
-}
-};
+            //about: {
+            //    include: true,
+            //    type: 'floating',
+            //    position: 100,
+            //    path: 'dijit/layout/ContentPane',
+            //    title: 'Using CMV with Calcite Maps',
+            //    menuTitle: 'About CMV',
+            //    open: true,
+            //    iconClass: 'fa-info',
+            //    options: {
+            //        className: 'text-center',
+            //        style: 'max-height:90%;',
+            //        content: [
+            //            '<div class="text-center" style="min-width:260px;font-size:60px;vertical-align:middle;width:90%;white-space:no-break;">',
+            //            '<a href="https://cmv.io/" target="_blank"><image style="height:60px;margin-top:-18px;" src="https://cmv.io/images/rocket-logo.png"></a>',
+            //            '<span class="fa fa-fw fa-plus"></span>',
+            //            '<a href="http://esri.github.io/calcite-maps/" target="_blank" class="esri-icon esri-icon-map-pin"style="color:#0079c1;text-decoration:none !important;"></a>',
+            //            '</div>',
+            //            '<h5>This is a demonstration of using <a href="https://cmv.io/" target="_blank">CMV</a> with Esri\'s <a href="http://esri.github.io/calcite-maps/" target="_blank">Calcite Maps</a>. You can use the styler widget to explore the different colors, styles and layouts. When you are done, apply the CSS styles and classes to your own apps.</h5>',
+            //            '<br/>',
+            //            '<button type="button" class="btn btn-success btn-lg"  data-dismiss="modal">Get Started</a>'
+            //        ].join('')
+            //    }
+            //}
+        }
+    };
 });

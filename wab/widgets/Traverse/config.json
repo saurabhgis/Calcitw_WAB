@@ -1,6 +1,8 @@
 {
 	"txtClosureTolerance":"0.01",
-	"txtSPwkid":"102100",
+  "txtSPwkid": "102100",
+
+
 	"txtGeometryServiceURL":"http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer",
 	"colorTraverse":"#ff0000",
 	"colorHighlight":"#00ffff",

@@ -1732,7 +1732,7 @@ define(['dojo/_base/declare', 'dijit/_WidgetsInTemplateMixin', 'jimu/BaseWidget'
                     var marker = new PictureMarkerSymbol();
                     marker.setHeight(21);
                     marker.setWidth(21);
-                    marker.setUrl("widgets/Traverse/images/drawCursor.png");
+                  //  marker.setUrl("widgets/Traverse/images/drawCursor.png");
 
                     var line = new CartographicLineSymbol();
                     line.setColor(new Color([0, 0, 0, 0.35]));
